@@ -363,7 +363,7 @@ module.exports = function(webpackEnv) {
                     return eslintConfig;
                   } else {
                     return {
-                      extends: [require.resolve('eslint-config-react-app')],
+                      extends: [require.resolve('eslint-config-sqve')],
                     };
                   }
                 })(),
@@ -415,10 +415,13 @@ module.exports = function(webpackEnv) {
                     ? 'production'
                     : isEnvDevelopment && 'development',
                   [
+                    'babel-plugin-lodash',
                     'babel-plugin-named-asset-import',
+                    'babel-plugin-ramda',
+                    'babel-plugin-styled-components',
                     'babel-preset-react-app',
                     'react-dev-utils',
-                    'react-scripts',
+                    '@sqve/react-scripts',
                   ]
                 ),
                 // @remove-on-eject-end
@@ -434,6 +437,9 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+                  [require.resolve('babel-plugin-ramda'), { useES: true }],
+                  require.resolve('babel-plugin-lodash'),
+                  require.resolve('babel-plugin-styled-components'),
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -472,7 +478,7 @@ module.exports = function(webpackEnv) {
                     'babel-plugin-named-asset-import',
                     'babel-preset-react-app',
                     'react-dev-utils',
-                    'react-scripts',
+                    '@sqve/react-scripts',
                   ]
                 ),
                 // @remove-on-eject-end
